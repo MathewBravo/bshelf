@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/MathewBravo/bshelf/pkg/add"
+	"github.com/MathewBravo/bshelf/pkg/export"
 	"github.com/MathewBravo/bshelf/pkg/help"
 )
 
@@ -14,6 +15,7 @@ const (
 	FIND_BOOK
 	SET
 	ADD
+	EXPORT
 
 	HELP
 	UNRECOGNIZED_COMMAND
@@ -29,6 +31,8 @@ func ParseArgs(args []string) Command {
 		return FIND_BOOK
 	case "add":
 		return ADD
+	case "export", "ex":
+		return EXPORT
 	case "h", "-h", "help", "-help":
 		return HELP
 	default:
@@ -36,7 +40,7 @@ func ParseArgs(args []string) Command {
 	}
 }
 
-func CommandDeligator(args []string, cmd Command) {
+func CommandDelegator(args []string, cmd Command) {
 	switch cmd {
 	case SHELVES:
 		fmt.Println("SHELVES")
@@ -48,6 +52,8 @@ func CommandDeligator(args []string, cmd Command) {
 		fmt.Printf("The Command %s is not found", args[0])
 	case ADD:
 		add.ParseAddCommand(args[1:])
+	case EXPORT:
+		export.ParseExportCommand(args)
 	case HELP:
 		help.PrintHelp()
 	default:

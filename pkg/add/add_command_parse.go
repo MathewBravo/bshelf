@@ -1,7 +1,5 @@
 package add
 
-import "fmt"
-
 type AddCommand int
 
 const (
@@ -11,12 +9,5 @@ const (
 )
 
 func ParseAddCommand(args []string) {
-	switch args[0] {
-	case "shelf":
-		fmt.Println("ADDING SHELF")
-	case "book":
-		fmt.Println("ADDING BOOK")
-	case "note":
-		fmt.Println("ADDING NOTE")
-	}
+
 }
