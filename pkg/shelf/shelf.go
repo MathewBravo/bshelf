@@ -4,6 +4,10 @@ import (
 	"github.com/MathewBravo/bshelf/pkg/book"
 )
 
+type Shelves struct {
+	Shelves []Shelf
+}
+
 type Shelf struct {
 	Name  string
 	Books []book.Book

@@ -6,6 +6,7 @@ import (
 	"github.com/MathewBravo/bshelf/pkg/add"
 	"github.com/MathewBravo/bshelf/pkg/export"
 	"github.com/MathewBravo/bshelf/pkg/help"
+	"github.com/MathewBravo/bshelf/pkg/init_shelf"
 )
 
 type Command int
@@ -16,6 +17,7 @@ const (
 	SET
 	ADD
 	EXPORT
+	INIT
 
 	HELP
 	UNRECOGNIZED_COMMAND
@@ -35,6 +37,8 @@ func ParseArgs(args []string) Command {
 		return EXPORT
 	case "h", "-h", "help", "-help":
 		return HELP
+	case "init", "i":
+		return INIT
 	default:
 		return UNRECOGNIZED_COMMAND
 	}
@@ -56,6 +60,8 @@ func CommandDelegator(args []string, cmd Command) {
 		export.ParseExportCommand(args)
 	case HELP:
 		help.PrintHelp()
+	case INIT:
+		init_shelf.Init()
 	default:
 		fmt.Println("Command Not Found", args[0])
 	}
